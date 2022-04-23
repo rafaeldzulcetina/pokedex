@@ -41,7 +41,7 @@ export default class Pokedex extends Vue {
   private pokemonId = Math.floor(Math.random() * 806 + 1).toString();
   private errorMessage = [];
 
-  data(): any {
+  data(): unknown {
     return {
       error: false,
       loading: true,
@@ -75,7 +75,7 @@ export default class Pokedex extends Vue {
     this.error = true;
   }
 
-  created() {
+  created(): void {
     this.getPokemon();
   }
 }

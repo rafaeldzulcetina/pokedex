@@ -37,14 +37,13 @@ export default class PokedexScreen extends Vue {
   private form = {
     pokemonId: "",
   };
-  data(): any {
+  data(): unknown {
     return {
       form: new Form({
         pokemonId: "",
       }),
     };
   }
-
   private async search(event: any) {
     event.preventDefault();
     const pokemonName = this.form.pokemonId;
