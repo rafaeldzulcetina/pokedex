@@ -1,4 +1,4 @@
-# <a href="https://oscar-raygoza.github.io/pokedex-vue/">⚡ Pokedex Vue ⚡</a>
+# <a href="https://rafaelcetina.github.io/pokedex-vue/">⚡ Pokedex Vue ⚡</a>
 ![](docs/App.png)
 ![](docs/Search-Function.png)
 
