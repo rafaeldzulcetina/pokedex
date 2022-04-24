@@ -12,19 +12,15 @@ export default class AmplifyClient implements HttpClientInterface {
     headers: {},
     response: true,
   };
-  private apiStage = "dev/api/";
-  //private apiStage = 'api/'
-
   constructor() {
     AmplifyClient.instance = this;
-
+    const { VUE_APP_API_STAGE = "", VUE_APP_BASEURL = "" } = process.env;
     API.configure({
       API: {
         endpoints: [
           {
             name: "MyAPIGatewayAPI",
-            // endpoint_old: 'https://qolvv3jx5a.execute-api.us-east-2.amazonaws.com',
-            endpoint: process.env.VUE_APP_BASEURL + this.apiStage,
+            endpoint: VUE_APP_BASEURL + VUE_APP_API_STAGE,
             // custom_header: async () => ({ Authorization: store.getters["auth/token"] }),
             custom_header: async () => ({ Authorization: store.state }),
             // custom_header: async () => ({ Authorization: process.env.VUE_APP_TOKEN_CRM }),

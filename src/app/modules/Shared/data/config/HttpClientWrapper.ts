@@ -15,28 +15,28 @@ export interface HttpClientWrapper {
    * @description Crea una peticion GET haciendo uso de un cliente HTTP
    * @param url {string}
    * @param payload {Payload}
-   * @return Promise<Response<never>>
+   * @return Promise<Response<any>>
    */
-  get(url: string, payload: Payload): Promise<Response<never>>;
+  get(url: string, payload: Payload): Promise<Response<any>>;
   /**
    * @description Crea una peticion POST haciendo uso de un cliente HTTP
    * @param url {string}
    * @param payload {Payload}
-   * @return Promise<Response<never>>
+   * @return Promise<Response<any>>
    */
-  post(url: string, payload: Payload): Promise<Response<never>>;
+  post(url: string, payload: Payload): Promise<Response<any>>;
   /**
    * @description Crea una peticion PUT haciendo uso de un cliente HTTP
    * @param url {string}
    * @param payload {Payload}
-   * @return Promise<Response<never>>
+   * @return Promise<Response<any>>
    */
-  put(url: string, payload: Payload): Promise<Response<never>>;
+  put(url: string, payload: Payload): Promise<Response<any>>;
   /**
    * @description Crea una peticion DELETE haciendo uso de un cliente HTTP
    * @param url {string}
    * @param payload {Payload}
-   * @return Promise<Response<never>>
+   * @return Promise<Response<any>>
    */
-  delete(url: string, payload: Payload): Promise<Response<never>>;
+  delete(url: string, payload: Payload): Promise<Response<any>>;
 }

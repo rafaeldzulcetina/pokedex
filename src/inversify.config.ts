@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { Container } from "inversify";
 import getDecorators from "inversify-inject-decorators";
 // import useCases
-import { GetPokemonsUseCase } from "./app/modules/Pokedex/useCases/getPokemonsUseCase";
+import { GetPokemonUseCase } from "./app/modules/Pokedex/useCases/getPokemonUseCase";
 // Repositories useCases
 import PokemonRepository from "./app/modules/Pokedex/domain/PokemonRepository";
 // Services
@@ -18,7 +18,7 @@ container.bind<IHttp>("Http").to(Http);
 
 container.bind<PokemonRepository>("PokemonRepository").to(PokemonService);
 
-container.bind<GetPokemonsUseCase>("GetPokemonsUseCase").to(GetPokemonsUseCase);
+container.bind<GetPokemonUseCase>("GetPokemonsUseCase").to(GetPokemonUseCase);
 
 const { lazyInject } = getDecorators(container);
 export { lazyInject, container };

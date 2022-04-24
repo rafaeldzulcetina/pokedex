@@ -1,5 +1,5 @@
 /**
- * @description Clase para definir repositorio http de pagos
+ * @description Clase para definir repositorio http de pokemon
  * @author Rafael Cetina
  * @creationDate 06 de Enero del 2022
  */
@@ -16,17 +16,11 @@ export default class PokemonService implements PokemonRepository {
   constructor(@inject("Http") private http: IHttp) {}
 
   /*
-    Método para obtener todos los pagos
-     */
-  /*
-    Método para obtener todos los pagos con límite
+    Método para obtener un pokemon con el id o nombre
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  public getPokemons(limite = 2): Promise<IResponse<Pokemon[]>> {
-    console.log("entra a get pagos httpRepository");
+  public getPokemon(key = "pikachu"): Promise<IResponse<Pokemon>> {
     /*Construcción de la url para la petición http*/
-    //const url = `pagos/limit/${limite}`
-    const url = `users`;
+    const url = `pokemon/${key}`;
     return this.http.get(url, {});
   }
 }

@@ -6,5 +6,5 @@ import { IResponse } from "@/app/network/domain/interface/IResponse";
  * @interface PokemonRepository
  */
 export default interface PokemonRepository {
-  getPokemons(limite: number): Promise<IResponse<Pokemon[]>>;
+  getPokemon(key: string): Promise<IResponse<Pokemon>>;
 }

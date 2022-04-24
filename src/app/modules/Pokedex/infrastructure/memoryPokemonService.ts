@@ -21,10 +21,11 @@ export default class PokemonService implements PokemonRepository {
 
   /**
    * return pokemons
-   * @param { Number } limite - number last pokemons
+   * @param { string } key - number last pokemons
    * @returns { Array } - Items
    */
-  public getPokemons(limite: number): Promise<IResponse<Pokemon[]>> {
+  /*
+  public getPokemon(key: string): Promise<IResponse<Pokemon[]>> {
     const fakeResponse: IResponse<Pokemon[]> = {
       data: [],
       warnings: [],
@@ -36,5 +37,10 @@ export default class PokemonService implements PokemonRepository {
     return new Promise((resolve) => {
       resolve(fakeResponse);
     });
+  }
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public getPokemon(key: string): Promise<IResponse<Pokemon>> {
+    throw "Method not implemented";
   }
 }

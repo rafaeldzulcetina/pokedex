@@ -1,4 +1,8 @@
 {
+  "resolutions": {
+    "**/@typescript-eslint/eslint-plugin": "^4.1.1",
+    "**/@typescript-eslint/parser": "^4.1.1"
+  },
   "name": "pokedex-vue",
   "version": "0.1.0",
   "private": true,
@@ -9,17 +13,25 @@
     "serve:dist": "serve -s dist"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/webpack-env": "^1.16.3",
+    "aws-amplify": "^4.3.4",
     "axios": "^0.25.0",
     "confetti-js": "0.0.18",
     "core-js": "^3.6.5",
     "inversify": "^5.0.1",
     "inversify-inject-decorators": "^3.1.0",
+    "lodash": "^4.17.15",
+    "node-sass": "^6.0.1",
+    "reflect-metadata": "^0.1.13",
     "vform": "^2.1.2",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "vuex-class": "^0.3.2",
+    "vuex-module-decorators": "^1.2.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.18.0",
@@ -35,28 +47,11 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
-    "node-sass": "^4.12.0",
     "prettier": "^2.2.1",
-    "sass-loader": "^8.0.2",
+    "sass": "~1.32.6",
+    "sass-loader": "^10.0.0",
     "typescript": "~4.1.5",
     "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended",
-      "@vue/typescript/recommended",
-      "@vue/prettier",
-      "@vue/prettier/@typescript-eslint"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2020
-    },
-    "rules": {}
   },
   "browserslist": [
     "> 1%",

@@ -11,10 +11,10 @@ import { ErrorStatus } from "./ErrorStatus";
 export default abstract class HttpResponseHandler {
   /**
    * @description Metodo que transforma una respuesta especifica a una general
-   * @param response {HttpAppResponse<never>}
-   * @return Response<never>
+   * @param response {HttpAppResponse<any>}
+   * @return Response<any>
    */
-  private transform(response: HttpAppResponse<never>): Response<never> {
+  private transform(response: HttpAppResponse<any>): Response<any> {
     switch (response.status) {
       case 200:
         return {
@@ -84,7 +84,7 @@ export default abstract class HttpResponseHandler {
     }
   }
 
-  protected handleAxiosErrors(response: HttpAppResponse): Response<never> {
+  protected handleAxiosErrors(response: HttpAppResponse): Response<any> {
     return this.transform({
       data: response.data,
       status: response.status,
@@ -92,7 +92,7 @@ export default abstract class HttpResponseHandler {
     });
   }
 
-  protected handleAmplifyErrors(response: HttpAppResponse): Response<never> {
+  protected handleAmplifyErrors(response: HttpAppResponse): Response<any> {
     return this.transform({
       data: response.data,
       status: response.status,
@@ -101,8 +101,8 @@ export default abstract class HttpResponseHandler {
   }
 
   protected async commitRequest(
-    response: Promise<HttpAppResponse<never>>
-  ): Promise<Response<never>> {
+    response: Promise<HttpAppResponse<any>>
+  ): Promise<Response<any>> {
     try {
       const result = await response;
       return this.transform(result);

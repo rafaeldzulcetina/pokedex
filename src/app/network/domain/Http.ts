@@ -1,14 +1,12 @@
 import Amplify, { API } from "aws-amplify";
+
 import Axios, { AxiosError, AxiosInstance } from "axios";
 import { IHttp } from "@/app/network/domain/interface/IHttp";
 import { IPayload } from "@/app/network/domain/interface/IPayload";
 import { IResponse } from "@/app/network/domain/interface/IResponse";
 import { SupportedHttpClients } from "@/app/network/domain/data/SupportedHttpClients";
-import { inject, injectable } from "inversify";
+import { injectable } from "inversify";
 import {
-  JsonPrimitive,
-  JsonMap,
-  JsonArray,
   Json,
 } from "@/app/modules/Shared/domain/json.types";
 import store from "@/ui/store/index";
@@ -31,17 +29,11 @@ export default class Http implements IHttp {
         // FECTH
         break;
     }
-
-    this.token = store.getters["auth/token"];
-    if (this.token) {
-      // @ts-ignore
-      this.requestHeaders["Authorization"] = `Bearer ${this.token}`;
-    }
   }
 
   private instanceAxios() {
     this.axios = Axios.create({
-      baseURL: process.env.VUE_APP_BASEURL,
+      baseURL: process.env.VUE_APP_BASE_URL + process.env.VUE_APP_API_STAGE,
     });
   }
 
@@ -51,7 +43,7 @@ export default class Http implements IHttp {
         endpoints: [
           {
             name: "api",
-            endpoint: process.env.VUE_APP_FAKE_API_URL_DEV + "dev/",
+            endpoint: process.env.VUE_APP_BASE_URL + process.env.VUE_APP_API_STAGE,
             custom_header: async () => {
               return { Authorization: `Bearer ${this.token}` };
             },
@@ -70,21 +62,21 @@ export default class Http implements IHttp {
         try {
           const response = await this.axios.delete(url, {
             params: payload?.params,
-            // @ts-ignore
+
             headers: this.requestHeaders,
             data: payload?.data,
           });
 
           return {
-            // @ts-ignore
-            data: response.data.data,
-            // @ts-ignore
-            errors: response.data.data.errors,
-            // @ts-ignore
-            warnings: response.data.data.warnings,
+
+            data: response.data,
+
+            errors: response.data.errors,
+
+            warnings: response.data.warnings,
           };
         } catch (e) {
-          // @ts-ignore
+
           const { data, errors, warnings } = (e as AxiosError).response.data;
           return {
             data,
@@ -97,25 +89,25 @@ export default class Http implements IHttp {
         try {
           const response = await API.del("api", url, {
             response: true,
-            // @ts-ignore
+
             body: payload.data, // DATA
-            // @ts-ignore
+
             queryStringParameters: payload.params, // QUERY STRINGS,
           });
           return {
-            data: response.data.data,
+            data: response.data,
             errors: response.data.errors,
             warnings: response.data.warnings,
           };
         } catch (e) {
           return {
-            data: e.response.data.data,
+            data: e.response.data,
             errors: e.response.data.errors,
             warnings: e.response.data.warnings,
           };
         }
       default:
-        // @ts-ignore
+
         return Promise.resolve(undefined);
     }
   }
@@ -126,27 +118,27 @@ export default class Http implements IHttp {
         try {
           const response = await this.axios.get(url, {
             params: payload?.params,
-            // @ts-ignore
+
             headers: this.requestHeaders,
             data: payload?.data,
           });
 
           return {
-            // @ts-ignore
-            data: response.data.data,
-            // @ts-ignore
-            errors: response.data.data.errors,
-            // @ts-ignore
-            warnings: response.data.data.warnings,
+
+            data: response.data,
+
+            errors: response.data.errors,
+
+            warnings: response.data.warnings,
           };
         } catch (e) {
           const error = e as AxiosError;
           return {
-            // @ts-ignore
+
             data: null,
-            // @ts-ignore
+
             errors: error.response.data.errors,
-            // @ts-ignore
+
             warnings: error.response.data.warnings,
           };
         }
@@ -155,23 +147,22 @@ export default class Http implements IHttp {
         try {
           const response = await API.get("api", url, {
             response: true,
-            // @ts-ignore
             queryStringParameters: payload.params, // QUERY STRINGS,
           });
           return {
-            data: response.data.data,
+            data: response.data,
             errors: response.data.errors,
             warnings: response.data.warnings,
           };
         } catch (e) {
           return {
-            data: e.response.data.data,
+            data: e.response.data,
             errors: e.response.data.errors,
             warnings: e.response.data.warnings,
           };
         }
       default:
-        // @ts-ignore
+
         return Promise.resolve(undefined);
     }
   }
@@ -180,23 +171,23 @@ export default class Http implements IHttp {
     switch (process.env.VUE_APP_HTTP_CLIENT) {
       case SupportedHttpClients.AXIOS:
         try {
-          // @ts-ignore
+
           const response = await this.axios.post(url, payload.data, {
             params: payload?.params,
-            // @ts-ignore
+
             headers: this.requestHeaders,
           });
 
           return {
-            // @ts-ignore
-            data: response.data.data,
-            // @ts-ignore
-            errors: response.data.data.errors,
-            // @ts-ignore
-            warnings: response.data.data.warnings,
+
+            data: response.data,
+
+            errors: response.data.errors,
+
+            warnings: response.data.warnings,
           };
         } catch (e) {
-          // @ts-ignore
+
           const { data, errors, warnings } = (e as AxiosError).response.data;
           return {
             data,
@@ -209,25 +200,25 @@ export default class Http implements IHttp {
         try {
           const response = await API.post("api", url, {
             response: true,
-            // @ts-ignore
+
             body: payload.data, // DATA
-            // @ts-ignore
+
             queryStringParameters: payload.params, // QUERY STRINGS,
           });
           return {
-            data: response.data.data,
+            data: response.data,
             errors: response.data.errors,
             warnings: response.data.warnings,
           };
         } catch (e) {
           return {
-            data: e.response.data.data,
+            data: e.response.data,
             errors: e.response.data.errors,
             warnings: e.response.data.warnings,
           };
         }
       default:
-        // @ts-ignore
+
         return Promise.resolve(undefined);
     }
   }
@@ -238,20 +229,20 @@ export default class Http implements IHttp {
         try {
           const response = await this.axios.put(url, payload?.data, {
             params: payload?.params,
-            // @ts-ignore
+
             headers: this.requestHeaders,
           });
 
           return {
-            // @ts-ignore
-            data: response.data.data,
-            // @ts-ignore
-            errors: response.data.data.errors,
-            // @ts-ignore
-            warnings: response.data.data.warnings,
+
+            data: response.data,
+
+            errors: response.data.errors,
+
+            warnings: response.data.warnings,
           };
         } catch (e) {
-          // @ts-ignore
+
           const { data, errors, warnings } = (e as AxiosError).response.data;
           return {
             data,
@@ -264,25 +255,25 @@ export default class Http implements IHttp {
         try {
           const response = await API.put("api", url, {
             response: true,
-            // @ts-ignore
+
             body: payload.data, // DATA
-            // @ts-ignore
+
             queryStringParameters: payload.params, // QUERY STRINGS,
           });
           return {
-            data: response.data.data,
+            data: response.data,
             errors: response.data.errors,
             warnings: response.data.warnings,
           };
         } catch (e) {
           return {
-            data: e.response.data.data,
+            data: e.response.data,
             errors: e.response.data.errors,
             warnings: e.response.data.warnings,
           };
         }
       default:
-        // @ts-ignore
+
         return Promise.resolve(undefined);
     }
   }
@@ -298,15 +289,15 @@ export default class Http implements IHttp {
           });
 
           return {
-            // @ts-ignore
-            data: response.data.data,
-            // @ts-ignore
-            errors: response.data.data.errors,
-            // @ts-ignore
-            warnings: response.data.data.warnings,
+
+            data: response.data,
+
+            errors: response.data.errors,
+
+            warnings: response.data.warnings,
           };
         } catch (e) {
-          // @ts-ignore
+
           const { data, errors, warnings } = (e as AxiosError).response.data;
           return {
             data,
@@ -319,25 +310,25 @@ export default class Http implements IHttp {
         try {
           const response = await API.patch("api", url, {
             response: true,
-            // @ts-ignore
+
             body: payload.data, // DATA
-            // @ts-ignore
+
             queryStringParameters: payload.params, // QUERY STRINGS,
           });
           return {
-            data: response.data.data,
+            data: response.data,
             errors: response.data.errors,
             warnings: response.data.warnings,
           };
         } catch (e) {
           return {
-            data: e.response.data.data,
+            data: e.response.data,
             errors: e.response.data.errors,
             warnings: e.response.data.warnings,
           };
         }
       default:
-        // @ts-ignore
+
         return Promise.resolve(undefined);
     }
   }

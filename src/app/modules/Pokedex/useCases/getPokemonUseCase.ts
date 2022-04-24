@@ -7,11 +7,11 @@ import { IBaseUseCase } from "@/app/modules/Shared/domain/IBaseUseCase";
 @injectable()
 /**
  * Get limit teen payments
- * @class GetPokemonsUseCase
+ * @class GetPokemonUseCase
  * @implements IBaseUseCase
  */
-export class GetPokemonsUseCase
-  implements IBaseUseCase<number, Promise<IResponse<Pokemon[]>>>
+export class GetPokemonUseCase
+  implements IBaseUseCase<string, Promise<IResponse<Pokemon>>>
 {
   /**
    * @constructor
@@ -25,7 +25,7 @@ export class GetPokemonsUseCase
    * run the getAll method
    * @method execute
    */
-  execute(port: number): Promise<IResponse<Pokemon[]>> {
-    return this.pokemonRepo.getPokemons(port);
+  execute(port: string): Promise<IResponse<Pokemon>> {
+    return this.pokemonRepo.getPokemon(port);
   }
 }

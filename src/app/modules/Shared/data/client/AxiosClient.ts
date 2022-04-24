@@ -20,10 +20,10 @@ export default class AxiosClient implements HttpClientInterface {
    * @type AxiosInstance
    */
   private axios!: AxiosInstance;
-  private apiStage = "dev/api";
   constructor() {
+    const { VUE_APP_API_STAGE = "", VUE_APP_BASEURL = "" } = process.env;
     this.axios = axios.create({
-      baseURL: process.env.VUE_APP_FAKE_API_URL + this.apiStage,
+      baseURL: VUE_APP_BASEURL + VUE_APP_API_STAGE,
     });
 
     this.axios.interceptors.request.use((config: AxiosRequestConfig) => {

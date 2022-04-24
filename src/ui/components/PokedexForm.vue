@@ -37,7 +37,7 @@ export default class PokedexScreen extends Vue {
   private form = {
     pokemonId: "",
   };
-  data(): unknown {
+  data(): any {
     return {
       form: new Form({
         pokemonId: "",
@@ -47,7 +47,6 @@ export default class PokedexScreen extends Vue {
   private async search(event: any) {
     event.preventDefault();
     const pokemonName = this.form.pokemonId;
-    console.log(pokemonName);
     const newPokemonId = window.isNaN(parseInt(pokemonName))
       ? pokemonName.toLowerCase()
       : pokemonName;

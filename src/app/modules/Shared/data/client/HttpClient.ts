@@ -39,7 +39,7 @@ export default class HttpClient
    * @param url {string}
    * @param payload {Payload}
    * @override delete
-   * @return {Promise<Response<never>>}
+   * @return {Promise<Response<any>>}
    */
   async delete<T, U>(url: string, payload: Payload): Promise<Response<U>> {
     return this.commitRequest(this.httpClient.delete(url, payload));
@@ -50,7 +50,7 @@ export default class HttpClient
    * @param url {string}
    * @param payload {Payload}
    * @override get
-   * @return {Promise<Response<never>>}
+   * @return {Promise<Response<any>>}
    */
   async get<T, U>(url: string, payload: Payload): Promise<Response<U>> {
     return this.commitRequest(this.httpClient.get(url, payload));
@@ -61,9 +61,9 @@ export default class HttpClient
    * @param url {string}
    * @param payload {Payload}
    * @override post
-   * @return {Promise<Response<never>>}
+   * @return {Promise<Response<any>>}
    */
-  async post(url: string, payload: Payload): Promise<Response<never>> {
+  async post(url: string, payload: Payload): Promise<Response<any>> {
     return this.commitRequest(this.httpClient.post(url, payload));
   }
 
@@ -72,9 +72,9 @@ export default class HttpClient
    * @param url {string}
    * @param payload {Payload}
    * @override put
-   * @return {Promise<Response<never>>}
+   * @return {Promise<Response<any>>}
    */
-  async put(url: string, payload: Payload): Promise<Response<never>> {
+  async put(url: string, payload: Payload): Promise<Response<any>> {
     return this.commitRequest(this.httpClient.put(url, payload));
   }
 }
