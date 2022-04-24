@@ -12,6 +12,8 @@
     "axios": "^0.25.0",
     "confetti-js": "0.0.18",
     "core-js": "^3.6.5",
+    "inversify": "^5.0.1",
+    "inversify-inject-decorators": "^3.1.0",
     "vform": "^2.1.2",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
