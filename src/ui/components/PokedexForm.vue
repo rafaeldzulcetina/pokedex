@@ -44,11 +44,9 @@ export default class PokedexScreen extends Vue {
       }),
     };
   }
-
   private async search(event: any) {
     event.preventDefault();
     const pokemonName = this.form.pokemonId;
-    console.log(pokemonName);
     const newPokemonId = window.isNaN(parseInt(pokemonName))
       ? pokemonName.toLowerCase()
       : pokemonName;

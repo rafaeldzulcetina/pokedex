@@ -24,9 +24,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import PokedexScreen from "@/components/PokedexScreen.vue"; // @ is an alias to /src
-import PokedexForm from "@/components/PokedexForm.vue"; // @ is an alias to /src
-import Stats from "@/components/Stats.vue"; // @ is an alias
+import PokedexScreen from "@/ui/components/PokedexScreen.vue"; // @ is an alias to /src
+import PokedexForm from "@/ui/components/PokedexForm.vue"; // @ is an alias to /src
+import Stats from "@/ui/components/Stats.vue";
+import PokedexStore from "@/ui/store/modules/pokedex/pokedexStore";
+import { getModule } from "vuex-module-decorators";
+import { Pokemon } from "@/app/modules/Pokedex/domain/Pokemon"; // @ is an alias
 @Component({
   components: {
     PokedexScreen,
@@ -35,22 +38,21 @@ import Stats from "@/components/Stats.vue"; // @ is an alias
   },
 })
 export default class Pokedex extends Vue {
-  private error = false;
-  private loading = true;
-  private pokemon = [];
-  private pokemonId = Math.floor(Math.random() * 806 + 1).toString();
-  private errorMessage = [];
+  error = false;
+  loading = true;
+  //pokemon: Pokemon = { base_experience: 0, id: 0, name: "" };
+  pokemonId = Math.floor(Math.random() * 806 + 1).toString();
+  errorMessage = [];
 
-  data(): any {
-    return {
-      error: false,
-      loading: true,
-      pokemon: null,
-      pokemonId: Math.floor(Math.random() * 806 + 1).toString(),
-    };
-  }
+  pokedexModule = getModule(PokedexStore, this.$store);
 
-  private async getPokemon() {
+
+  async getPokemon(): Promise<void> {
+    await this.pokedexModule.fetchPokemon(this.pokemonId);
+    //this.pokemon = this.pokedexModule.pokemon;
+    this.loading = false;
+    this.error = false;
+    /*
     fetch(`https://pokeapi.co/api/v2/pokemon/${this.pokemonId}`)
       .then((res) => res.json())
       .then((data) => {
@@ -62,21 +64,29 @@ export default class Pokedex extends Vue {
         this.error = true;
         this.errorMessage = err.message;
       });
+
+     */
   }
 
-  private async handleSubmit(pokemonId: string) {
+  async handleSubmit(pokemonId: string): Promise<void> {
     if (pokemonId !== "") {
       this.error = false;
       this.loading = true;
       this.pokemonId = pokemonId;
-      this.getPokemon();
-      return;
+      await this.getPokemon();
+      this.loading = false;
+      this.error = false;
     }
-    this.error = true;
+    this.error = false;
   }
 
-  created() {
+  created(): void {
     this.getPokemon();
+  }
+
+  get pokemon(): Pokemon {
+    //return {id:0, name:"", base_experience: 0, sprites: {front_default: ''}}
+    return this.pokedexModule.pokemon
   }
 }
 </script>

@@ -1,19 +1,20 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "target": "esnext",
     "module": "esnext",
-    "strict": true,
+    "strict": false,
     "jsx": "preserve",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "importHelpers": true,
     "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "allowJs": true,
     "sourceMap": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
-    "isolatedModules": true,
-    "noImplicitThis": true,
     "types": [
       "webpack-env"
     ],

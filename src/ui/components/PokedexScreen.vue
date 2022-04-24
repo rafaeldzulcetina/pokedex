@@ -27,10 +27,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import {Pokemon} from "@/app/modules/Pokedex/domain/Pokemon";
 
 @Component
 export default class PokedexScreen extends Vue {
-  @Prop() private pokemon!: any;
+  @Prop() private pokemon!: Pokemon;
   @Prop({ default: false }) private error!: boolean;
   @Prop({ default: false }) private loading!: boolean;
 }

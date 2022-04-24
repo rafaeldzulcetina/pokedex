@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import Stat from "@/components/Stat.vue";
+import Stat from "@/ui/components/Stat.vue";
 @Component({
   name: "Stats",
   components: {
