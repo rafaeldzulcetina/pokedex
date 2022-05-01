@@ -74,20 +74,4 @@ _Observamos la propiedad actorId para que siempre que cambie de valor, llamemos 
 Es mejor idea pensar en una propiedad computada siempre que necesitemos calcular un valor en función a otras propiedades, teniendo en cuenta que Vue volverá a evaluar la propiedad cada vez que alguna de sus dependencias cambie y no necesitaremos un watch personalizado por cada dependencia. Pero un watch sería mejor si en cambio necesitamos realizar algo más complejo como llamadas http, configurar un timer o guardar datos en el local storage.
 
 ___
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### [Regresar al repo](https://github.com/rafaelcetina/pokedex)
