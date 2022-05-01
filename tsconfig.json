@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
+    "skipLibCheck": true,
     "target": "esnext",
     "module": "esnext",
     "strict": false,
@@ -38,6 +39,9 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist",
+    "docs",
+    "docs_old"
   ]
 }

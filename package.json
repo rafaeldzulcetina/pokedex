@@ -7,14 +7,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "serve:dist": "serve -s dist"
+    "serve": "vite --open",
+    "preview": "vite preview --open --port 8080",
+    "build": "vite build --out-dir docs",
+    "lint": "vite lint"
   },
   "dependencies": {
     "@types/lodash": "^4.14.149",
-    "@types/webpack-env": "^1.16.3",
     "aws-amplify": "^4.3.4",
     "axios": "^0.25.0",
     "confetti-js": "0.0.18",
@@ -22,7 +21,6 @@
     "inversify": "^5.0.1",
     "inversify-inject-decorators": "^3.1.0",
     "lodash": "^4.17.15",
-    "node-sass": "^6.0.1",
     "reflect-metadata": "^0.1.13",
     "vform": "^2.1.2",
     "vue": "^2.6.11",
@@ -36,12 +34,10 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
-    "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
     "eslint": "^6.7.2",
@@ -49,7 +45,9 @@
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^2.2.1",
     "sass": "~1.32.6",
-    "sass-loader": "^10.0.0",
+    "vite": "^2.9.6",
+    "vite-plugin-environment": "^1.1.1",
+    "vite-plugin-vue2": "^1.4.4",
     "typescript": "~4.1.5",
     "vue-template-compiler": "^2.6.11"
   },
