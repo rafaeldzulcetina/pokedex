@@ -1,7 +1,5 @@
 /**
  * @description Clase para definir repositorio http de pokemon
- * @author Rafael Cetina
- * @creationDate 06 de Enero del 2022
  */
 import { inject, injectable } from "inversify";
 import { Pokemon } from "@/app/modules/Pokedex/domain/Pokemon";

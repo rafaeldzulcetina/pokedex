@@ -22,19 +22,7 @@ export default class PokedexStore extends VuexModule {
   @lazyInject("GetPokemonsUseCase")
   private readonly getPokemon!: GetPokemonUseCase;
 
-  pokemon: Pokemon = {
-    base_experience: 0,
-    id: 0,
-    name: "",
-    sprites: {
-      front_default: '',
-      other: {
-        home: {
-          front_default: ''
-        }
-      }
-    }
-  };
+  pokemon: Pokemon = {base_experience: 0, id: 0, name: "", sprites: { front_default:"" }};
   /**
    * Mutations of Pokemon Store
    */
@@ -53,9 +41,9 @@ export default class PokedexStore extends VuexModule {
     const response = await this.getPokemon.execute(key);
     this.setItems(response.data);
   }
-  /*
-  public get Pokemon(): Pokemon | null {
+
+  get currentPokemon(){
     return this.pokemon
   }
-  */
+
 }

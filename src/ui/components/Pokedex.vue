@@ -3,7 +3,6 @@
     <div class="pokedex-left">
       <div class="pokedex-screen-container">
         <pokedex-screen
-          v-bind:pokemon="pokemon"
           v-bind:loading="loading"
           v-bind:error="error"
         />
@@ -14,7 +13,6 @@
     </div>
     <div class="pokedex-right">
       <stats
-        v-bind:pokemon="pokemon"
         v-bind:loading="loading"
         v-bind:error="error"
       />

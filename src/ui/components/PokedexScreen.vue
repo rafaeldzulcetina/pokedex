@@ -11,7 +11,7 @@
         src="../assets/glitch-static.gif"
         class="pokedex-no-screen"
       />
-      <div class="pokemon-info" v-else>
+      <div class="pokemon-info" v-else-if="pokemon">
         <h2 class="pokemon-name">
           Hola <b>{{ pokemon.name }}!</b>
         </h2>
@@ -28,12 +28,23 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import {Pokemon} from "@/app/modules/Pokedex/domain/Pokemon";
+import {getModule} from "vuex-module-decorators";
+import PokedexStore from "@/ui/store/modules/pokedex/pokedexStore";
 
 @Component
+
+
 export default class PokedexScreen extends Vue {
-  @Prop() private pokemon!: Pokemon;
-  @Prop({ default: false }) private error!: boolean;
-  @Prop({ default: false }) private loading!: boolean;
+  // @Prop() private pokemon!: Pokemon;
+  @Prop({ default: true }) private error!: boolean;
+  @Prop({ default: true }) private loading!: boolean;
+
+  pokedexModule = getModule(PokedexStore, this.$store);
+
+  get pokemon(): Pokemon {
+    //return {id:0, name:"", base_experience: 0, sprites: {front_default: ''}}
+    return this.pokedexModule.pokemon
+  }
 }
 </script>
 

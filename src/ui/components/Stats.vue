@@ -1,5 +1,5 @@
 <template>
-  <div class="stats">
+  <div class="stats" v-show="pokemon">
     <div class="screen">
       <h1 style="display: inline-block; margin-top: 5px">{{ pokemon.name }}</h1>
       <img v-bind:src="pokemon.sprites.front_default" class="image-stat" />
@@ -27,6 +27,9 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import Stat from "@/ui/components/Stat.vue";
+import {getModule} from "vuex-module-decorators";
+import PokedexStore from "@/ui/store/modules/pokedex/pokedexStore";
+import {Pokemon} from "@/app/modules/Pokedex/domain/Pokemon";
 @Component({
   name: "Stats",
   components: {
@@ -34,9 +37,16 @@ import Stat from "@/ui/components/Stat.vue";
   },
 })
 export default class PokedexScreen extends Vue {
-  @Prop() private pokemon!: any;
+  // @Prop() private pokemon!: any;
   @Prop({ default: false }) private error!: boolean;
   @Prop({ default: false }) private loading!: boolean;
+
+  pokedexModule = getModule(PokedexStore, this.$store);
+
+  get pokemon(): Pokemon {
+    //return {id:0, name:"", base_experience: 0, sprites: {front_default: ''}}
+    return this.pokedexModule.currentPokemon
+  }
 }
 </script>
 
