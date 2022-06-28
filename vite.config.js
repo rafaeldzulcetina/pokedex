@@ -12,7 +12,7 @@ export default defineConfig(({mode}) => {
   console.log("Environment: ", process.env.NODE_ENV)
 
   return {
-    base: process.env.NODE_ENV === "production" ? "/pokedex/" : "/",
+    base: process.env.NODE_ENV === "production" ? "/" : "/",
     // base: process.env.NODE_ENV === "production" ? "/pokedex/" : "/",
     //outputDir: path.resolve(__dirname, "./docs"),
     transpileDependencies: [],
