@@ -15,7 +15,7 @@
   "dependencies": {
     "@aws-amplify/ui-components": "^1.9.6",
     "@types/lodash": "^4.14.149",
-    "aws-amplify": "^4.3.21",
+    "aws-amplify": "4.3.21",
     "axios": "^0.25.0",
     "confetti-js": "0.0.18",
     "core-js": "^3.6.5",
